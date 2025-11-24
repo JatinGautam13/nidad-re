@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Montserrat:wght@400;700&display=swap');
+
+/* Monoton local font as fallback */
+@font-face {
+  font-family: 'Monoton';
+  src: url('/Monoton-Regular.ttf') format('truetype');
+}
+
+.hadding {
+  aspect-ratio: 25/18;
+  background: #101118;
+  background-image: url("/uploads/handrobo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 500px;
+}
+
+.circleImage {
+  width: 22vw;
+  height: 22vw;
+  min-width: 120px;
+  min-height: 120px;
+  max-width: 280px;
+  max-height: 280px;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse 40% 30% at 35% 25%, rgba(255, 255, 255, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 40% 38%, #4dd9d9 0%, #6b5bcf 30%, #3b8bcf 60%, #1ed98d 100%);
+  box-shadow:
+    0 0 4vw 1.5vw rgba(77, 217, 217, 0.4),
+    0 0.8vw 4vw 0 rgba(107, 91, 207, 0.7) inset,
+    0 -1.2vw 3vw 0 rgba(30, 217, 141, 0.5) inset,
+    0 0.3vw 1vw 0 rgba(255, 255, 255, 0.3) inset;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  flex-shrink: 0;
+}
+
+.glassRectangle {
+  width: 90%;
+  max-width: 480px;
+  font-size: clamp(0.75rem, 1.8vw, 1.05rem);
+  padding: clamp(0.8em, 2vw, 1.3em) clamp(0.6em, 1.5vw, 1.2em);
+  border-radius: clamp(0.8em, 2vw, 1.5em);
+  background: rgba(255,255,255,0.10);
+  box-shadow: 0 0.15em 1.5em 0 rgba(70, 120, 255, 0.19);
+  backdrop-filter: blur(10px);
+  border: 0.12em solid rgba(170, 200, 255, 0.36);
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  letter-spacing: 0.02em;
+  z-index: 10;
+  text-align: center;
+  animation: glideUpDown 4s ease-in-out infinite;
+  line-height: 1.5;
+}
+
+.glassRectangle p {
+  margin: 0;
+}
+
+.glassRectangle br {
+  display: none;
+}
+
+@keyframes glideUpDown {
+  0%, 100% {
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    transform: translate(-50%, -55%);
+  }
+}
+
+/* Only NidAds uses Monoton font */
+.NidAds {
+  font-family: 'Monoton', cursive;
+  body, html {
+    font-family: 'Montserrat', sans-serif;
+  }
+  font-size: clamp(2.5rem, 11vw, 8rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: #e0f5ff;
+  background: linear-gradient(90deg, #81b5e6 30%, #e5effe 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* Tablet landscape and desktop */
+@media (min-width: 900px) {
+  .glassRectangle br {
+    display: block;
+  }
+  .NidAds {
+    top: 22%;
+  }
+}
+@media (max-width:710px){
+  .hadding {
+  aspect-ratio:inherit;
+  }
+}
+
+/* Tablet */
+@media (max-width: 900px) and (min-width: 601px) {
+  .circleImage {
+    width: 28vw;
+    height: 28vw;
+    min-width: 140px;
+    min-height: 140px;
+    top: 42%;
+  }
+  .glassRectangle {
+    top: 42%;
+  }
+  .NidAds {
+    top: 23%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .glassRectangle {
+    width: 85%;
+    max-width: 340px;
+    padding: clamp(0.7em, 2.5vw, 1em) clamp(0.5em, 2vw, 0.8em);
+    top: 45%;
+  }
+  .circleImage {
+    width: 35vw;
+    height: 35vw;
+    min-width: 110px;
+    min-height: 110px;
+    max-width: 180px;
+    max-height: 180px;
+    top: 45%;
+  }
+  .NidAds {
+    font-size: clamp(1.8rem, 9vw, 3.5rem);
+    top: 25%;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 400px) {
+  .hadding {
+    min-height: 420px;
+  }
+  .glassRectangle {
+    width: 88%;
+    font-size: clamp(0.7rem, 3.5vw, 0.85rem);
+    padding: 0.7em 0.4em;
+    top: 47%;
+  }
+  .circleImage {
+    width: 38vw;
+    height: 38vw;
+    min-width: 100px;
+    min-height: 100px;
+    max-width: 150px;
+    max-height: 150px;
+    top: 47%;
+  }
+  .NidAds {
+    font-size: clamp(1.5rem, 10vw, 2.8rem);
+    top: 23%;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 320px) {
+  .hadding {
+    min-height: 380px;
+  }
+  .glassRectangle {
+    width: 90%;
+    font-size: 0.7rem;
+    padding: 0.6em 0.3em;
+    top: 48%;
+  }
+  .circleImage {
+    width: 90px;
+    height: 90px;
+    top: 48%;
+  }
+  .NidAds {
+    font-size: 1.5rem;
+    top: 22%;
+  }
+}

@@ -1,5 +1,8 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Montserrat } from "next/font/google";
 import "../styles/globals.css";
+import "./globals.css";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -9,6 +12,11 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata = {
@@ -36,11 +44,10 @@ export default function RootLayout({ children }) {
       <head>
         <script src="https://cdn.tailwindcss.com"></script>
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} app-shell`}>
-        <a href="#main-content" className="skip-link">
-          Skip to main content
-        </a>
-        {children}
+      <body className={montserrat.className}>
+        <Header/>
+         {children}
+        <Footer/>
       </body>
     </html>
   );
