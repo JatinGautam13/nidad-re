@@ -1,0 +1,276 @@
+.hero {
+  min-height: 100vh;
+  padding: 80px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* .hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(30, 30, 30, 0.3) 0%, transparent 100%);
+  pointer-events: none;
+} */
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header Styles */
+.header {
+  margin-bottom: 60px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 8px 16px;
+  margin-bottom: 24px;
+}
+
+.badgeText {
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.title {
+  font-size: 56px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 20px 0;
+  line-height: 1.2;
+}
+
+.description {
+  font-size: 16px;
+  color: #a0a0a0;
+  max-width: 700px;
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* Accordion Styles */
+.accordionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.accordionItem {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.accordionItem:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.accordionHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.accordionHeader:hover {
+  opacity: 0.8;
+}
+
+.questionWrapper {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex: 1;
+}
+
+.number {
+  font-size: 18px;
+  color: #666666;
+  font-weight: 500;
+  min-width: 30px;
+}
+
+.question {
+  font-size: 20px;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.icon {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.open .icon {
+  transform: rotate(180deg);
+}
+
+.accordionContent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.open .accordionContent {
+  max-height: 500px;
+  padding-bottom: 32px;
+}
+
+.answerWrapper {
+  padding-left: 54px;
+}
+
+.answer {
+  font-size: 15px;
+  color: #a0a0a0;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .hero {
+    padding: 60px 20px;
+  }
+  
+  .title {
+    font-size: 48px;
+  }
+  
+  .question {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 50px 20px;
+  }
+  
+  .hero::before {
+    width: 100%;
+    background: linear-gradient(180deg, rgba(30, 30, 30, 0.2) 0%, transparent 100%);
+  }
+  
+  .header {
+    margin-bottom: 40px;
+  }
+  
+  .title {
+    font-size: 36px;
+  }
+  
+  .description {
+    font-size: 15px;
+  }
+  
+  .accordionHeader {
+    padding: 24px 0;
+  }
+  
+  .questionWrapper {
+    gap: 16px;
+  }
+  
+  .number {
+    font-size: 16px;
+    min-width: 25px;
+  }
+  
+  .question {
+    font-size: 17px;
+  }
+  
+  .open .accordionContent {
+    padding-bottom: 24px;
+  }
+  
+  .answerWrapper {
+    padding-left: 41px;
+  }
+  
+  .answer {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 40px 16px;
+  }
+  
+  .badge {
+    padding: 6px 12px;
+  }
+  
+  .badgeText {
+    font-size: 12px;
+  }
+  
+  .title {
+    font-size: 28px;
+  }
+  
+  .description {
+    font-size: 14px;
+  }
+  
+  .accordionHeader {
+    padding: 20px 0;
+  }
+  
+  .questionWrapper {
+    gap: 12px;
+  }
+  
+  .number {
+    font-size: 14px;
+    min-width: 22px;
+  }
+  
+  .question {
+    font-size: 15px;
+  }
+  
+  .icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .open .accordionContent {
+    padding-bottom: 20px;
+  }
+  
+  .answerWrapper {
+    padding-left: 34px;
+  }
+  
+  .answer {
+    font-size: 13px;
+  }
+}
