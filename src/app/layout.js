@@ -40,11 +40,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script src="https://cdn.tailwindcss.com"></script>
       </head>
-      <body className={montserrat.className}>
+      <body className={montserrat.className} suppressHydrationWarning>
         <Header/>
          {children}
         <Footer/>

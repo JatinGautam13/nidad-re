@@ -1,18 +1,74 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import Image from "next/image";
 import styles from "./Header.module.css";
 
-export default function Home() {
+export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const navLinks = [
+    { label: "Course", href: "/course" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact-us" },
+  ];
+
   return (
-    <main>
-      <div className={styles.navbar}>
-        <div>
-          <button className={styles.NavButton1}>AI Mobile app</button>
-          <button className={styles.NavButton1}>Web-design</button>
+    <header className={styles.header} style={{ position: 'relative' }}>
+      <nav className={styles.navbar}>
+        {/* Logo */}
+        <div className={styles.logo}>
+          <Image
+            src="/uploads/Nidads-2.png"
+            alt="Nidads Logo"
+            width={120}
+            height={40}
+            className={styles.logoImage}
+            priority
+          />
         </div>
-        <div>
-          <button className={styles.NavButton1}>2025</button>
+
+        {/* Desktop Navigation */}
+        <div className={styles.desktopNav}>
+          {navLinks.map((link, index) => (
+            <a
+              key={index}
+              href={link.href}
+              className={styles.navLink}
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
-      </div>
-    </main>
+
+        {/* Mobile Menu Button */}
+        <button
+          className={styles.menuButton}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span className={styles.menuIcon}></span>
+          <span className={styles.menuIcon}></span>
+          <span className={styles.menuIcon}></span>
+        </button>
+      </nav>
+
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className={styles.mobileMenu}>
+          <div className={styles.mobileMenuContent}>
+            {navLinks.map((link, index) => (
+              <a
+                key={index}
+                href={link.href}
+                className={styles.mobileNavLink}
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </header>
   );
 }
