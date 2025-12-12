@@ -1,6 +1,6 @@
 .courseSection {
   padding: 80px 20px;
-  background: #041626;
+  /* background: #041626; */
   color: #e5f0ff;
 }
 
@@ -21,7 +21,7 @@
   font-size: 0.8rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #6ea8ff;
+  color: #131739;
   margin-bottom: 8px;
 }
 

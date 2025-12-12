@@ -1,215 +1,475 @@
-@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Montserrat:wght@400;700&display=swap');
-
-/* Monoton local font as fallback */
-@font-face {
-  font-family: 'Monoton';
-  src: url('/Monoton-Regular.ttf') format('truetype');
-}
-
-.hadding {
-  aspect-ratio: 25/18;
-  background: #101118;
-  background-image: url("/uploads/handrobo.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+/* Hero Container */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
   overflow: hidden;
-  min-height: 500px;
+  background: #0a0e27;
 }
 
-.circleImage {
-  width: 22vw;
-  height: 22vw;
-  min-width: 120px;
-  min-height: 120px;
-  max-width: 280px;
-  max-height: 280px;
-  border-radius: 50%;
-  background:
-    radial-gradient(ellipse 40% 30% at 35% 25%, rgba(255, 255, 255, 0.6) 0%, transparent 50%),
-    radial-gradient(circle at 40% 38%, #4dd9d9 0%, #6b5bcf 30%, #3b8bcf 60%, #1ed98d 100%);
-  box-shadow:
-    0 0 4vw 1.5vw rgba(77, 217, 217, 0.4),
-    0 0.8vw 4vw 0 rgba(107, 91, 207, 0.7) inset,
-    0 -1.2vw 3vw 0 rgba(30, 217, 141, 0.5) inset,
-    0 0.3vw 1vw 0 rgba(255, 255, 255, 0.3) inset;
+/* Background Image */
+.backgroundImage {
   position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
-  flex-shrink: 0;
+  inset: 0;
+  background-image: url('/uploads/Abstract Of World Network, Transfer, Digital, Globe Background Image And Wallpaper for Free Download.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.3;
 }
 
-.glassRectangle {
-  width: 90%;
-  max-width: 480px;
-  font-size: clamp(0.75rem, 1.8vw, 1.05rem);
-  padding: clamp(0.8em, 2vw, 1.3em) clamp(0.6em, 1.5vw, 1.2em);
-  border-radius: clamp(0.8em, 2vw, 1.5em);
-  background: rgba(255,255,255,0.10);
-  box-shadow: 0 0.15em 1.5em 0 rgba(70, 120, 255, 0.19);
-  backdrop-filter: blur(10px);
-  border: 0.12em solid rgba(170, 200, 255, 0.36);
-  color: #fff;
+.backgroundOverlay {
   position: absolute;
-  left: 50%;
-  top: 40%;
-  transform: translate(-50%, -50%);
-  letter-spacing: 0.02em;
+  inset: 0;
+  background: linear-gradient(to bottom right, #0a0e27, #0f1642, #1a1f4d);
+  opacity: 0.85;
+}
+
+/* Visualization SVG */
+.visualizationSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* SVG Animations */
+.pulseLeft {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.pulseRight {
+  animation: pulse 3s ease-in-out 1s infinite;
+}
+
+.activeLine {
+  opacity: 0.4;
+  transition: opacity 0.5s ease;
+}
+
+.inactiveLine {
+  opacity: 0.1;
+  transition: opacity 0.5s ease;
+}
+
+.lineChart {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawLine 3s ease-out forwards;
+}
+
+.chartPoint {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.barChart {
+  transform: scaleY(0);
+  animation: growBar 1s ease-out forwards;
+}
+
+.floatingPoint {
+  animation: float ease-in-out infinite;
+}
+
+/* Main Content */
+.content {
+  position: relative;
   z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
   text-align: center;
-  animation: glideUpDown 4s ease-in-out infinite;
-  line-height: 1.5;
 }
 
-.glassRectangle p {
-  margin: 0;
+/* Headline */
+.headline {
+  margin-bottom: 2rem;
 }
 
-.glassRectangle br {
-  display: none;
+.title {
+  font-size: 6rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  line-height: 1.1;
 }
 
-@keyframes glideUpDown {
-  0%, 100% {
-    transform: translate(-50%, -50%);
-  }
-  50% {
-    transform: translate(-50%, -55%);
-  }
-}
-
-/* Only NidAds uses Monoton font */
-.NidAds {
-  font-family: 'Monoton', cursive;
-  body, html {
-    font-family: 'Montserrat', sans-serif;
-  }
-  font-size: clamp(2.5rem, 11vw, 8rem);
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: 0.01em;
-  color: #e0f5ff;
-  background: linear-gradient(90deg, #81b5e6 30%, #e5effe 100%);
+.gradient {
+  background: linear-gradient(to right, #22d3ee, #3b82f6, #a855f7);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  pointer-events: none;
-  white-space: nowrap;
 }
 
-/* Tablet landscape and desktop */
-@media (min-width: 900px) {
-  .glassRectangle br {
-    display: block;
-  }
-  .NidAds {
-    top: 22%;
-  }
+.white {
+  color: #ffffff;
 }
-@media (max-width:710px){
-  .hadding {
-  aspect-ratio:inherit;
+
+.subtitle {
+  font-size: 2.5rem;
+  color: #d1d5db;
+  font-weight: 300;
+  line-height: 1.3;
+}
+
+.highlightCyan {
+  color: #22d3ee;
+  font-weight: 600;
+}
+
+.highlightBlue {
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+.highlightPurple {
+  color: #a855f7;
+  font-weight: 600;
+}
+
+/* Description */
+.description {
+  font-size: 1.25rem;
+  color: #d1d5db;
+  max-width: 48rem;
+  margin: 0 auto 3rem;
+  line-height: 1.75;
+}
+
+/* CTA Buttons */
+.ctaButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
+
+.buttonPrimary,
+.buttonSecondary {
+  padding: 1rem 2rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.buttonPrimary {
+  background: linear-gradient(to right, #06b6d4, #3b82f6);
+  color: white;
+  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+}
+
+.buttonPrimary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(34, 211, 238, 0.5);
+}
+
+.buttonSecondary {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.buttonSecondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* Tech Stack */
+.techStack {
+  margin-bottom: 3rem;
+}
+
+.techLabel {
+  color: #9ca3af;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.toolsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.toolCard {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toolCard:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-4px);
+}
+
+.toolIcon {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.toolCard:hover .toolIcon {
+  transform: scale(1.25);
+}
+
+.toolName {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Tool Colors */
+.python .toolName {
+  background: linear-gradient(to right, #3b82f6, #fbbf24);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tensorflow .toolName {
+  background: linear-gradient(to right, #fb923c, #ef4444);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pandas .toolName {
+  background: linear-gradient(to right, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.scikit .toolName {
+  background: linear-gradient(to right, #22d3ee, #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pytorch .toolName {
+  background: linear-gradient(to right, #ef4444, #fb923c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sql .toolName {
+  background: linear-gradient(to right, #10b981, #059669);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Stats Container */
+.statsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.statCard {
+  padding: 1.5rem;
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+.statCard:hover {
+  border-color: rgba(34, 211, 238, 0.5);
+  transform: translateY(-4px);
+}
+
+.statNumber {
+  font-size: 3rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #22d3ee, #a855f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.statLabel {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Keyframes */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
   }
 }
 
-/* Tablet */
-@media (max-width: 900px) and (min-width: 601px) {
-  .circleImage {
-    width: 28vw;
-    height: 28vw;
-    min-width: 140px;
-    min-height: 140px;
-    top: 42%;
-  }
-  .glassRectangle {
-    top: 42%;
-  }
-  .NidAds {
-    top: 23%;
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
   }
 }
 
-/* Mobile */
-@media (max-width: 600px) {
-  .glassRectangle {
-    width: 85%;
-    max-width: 340px;
-    padding: clamp(0.7em, 2.5vw, 1em) clamp(0.5em, 2vw, 0.8em);
-    top: 45%;
-  }
-  .circleImage {
-    width: 35vw;
-    height: 35vw;
-    min-width: 110px;
-    min-height: 110px;
-    max-width: 180px;
-    max-height: 180px;
-    top: 45%;
-  }
-  .NidAds {
-    font-size: clamp(1.8rem, 9vw, 3.5rem);
-    top: 25%;
+@keyframes fadeIn {
+  to {
+    opacity: 0.8;
   }
 }
 
-/* Very small screens */
-@media (max-width: 400px) {
-  .hadding {
-    min-height: 420px;
-  }
-  .glassRectangle {
-    width: 88%;
-    font-size: clamp(0.7rem, 3.5vw, 0.85rem);
-    padding: 0.7em 0.4em;
-    top: 47%;
-  }
-  .circleImage {
-    width: 38vw;
-    height: 38vw;
-    min-width: 100px;
-    min-height: 100px;
-    max-width: 150px;
-    max-height: 150px;
-    top: 47%;
-  }
-  .NidAds {
-    font-size: clamp(1.5rem, 10vw, 2.8rem);
-    top: 23%;
+@keyframes growBar {
+  to {
+    transform: scaleY(1);
   }
 }
 
-/* Extra small screens */
-@media (max-width: 320px) {
-  .hadding {
-    min-height: 380px;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
   }
-  .glassRectangle {
-    width: 90%;
-    font-size: 0.7rem;
-    padding: 0.6em 0.3em;
-    top: 48%;
+  50% {
+    transform: translateY(-20px);
   }
-  .circleImage {
-    width: 90px;
-    height: 90px;
-    top: 48%;
+}
+
+/* Responsive Design */
+@media (min-width: 640px) {
+  .ctaButtons {
+    flex-direction: row;
   }
-  .NidAds {
+}
+
+@media (max-width: 1024px) {
+  .title {
+    font-size: 4.5rem;
+  }
+  
+  .subtitle {
+    font-size: 2rem;
+  }
+  
+  .statNumber {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 3.5rem;
+  }
+  
+  .subtitle {
     font-size: 1.5rem;
-    top: 22%;
+  }
+  
+  .description {
+    font-size: 1rem;
+  }
+  
+  .statsContainer {
+    gap: 1rem;
+  }
+  
+  .statNumber {
+    font-size: 2rem;
+  }
+  
+  .toolsGrid {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .content {
+    padding: 3rem 1rem;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1.25rem;
+  }
+  
+  .description {
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+  }
+  
+  .ctaButtons {
+    margin-bottom: 2.5rem;
+  }
+  
+  .buttonPrimary,
+  .buttonSecondary {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .statsContainer {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .statCard {
+    padding: 1rem;
+  }
+  
+  .statNumber {
+    font-size: 2rem;
+  }
+  
+  .toolCard {
+    padding: 0.625rem 1rem;
+  }
+  
+  .toolIcon {
+    font-size: 1.25rem;
+  }
+  
+  .toolName {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .statNumber {
+    font-size: 1.75rem;
   }
 }

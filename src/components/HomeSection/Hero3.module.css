@@ -6,7 +6,7 @@
   --accent: #ff6b35;
   
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: #041626;
+    /* background: #041626; */
 
   color: #c5c7ce;
   padding-bottom: 60px;
@@ -23,7 +23,7 @@
 }
 
 .head h2 {
-  font: 400 1.5rem/1.2 Inter, sans-serif;
+  font: 900 1.5rem/1.2 Inter, sans-serif;
   color: #fff;
   margin: 0;
 }

@@ -55,7 +55,7 @@
   font-size: 2rem;
   margin: 0 0 1.5em;
   color: white;
-  font-weight: 300;
+  font-weight: 800;
   letter-spacing: 1px;
   position: relative;
   z-index: 1;
@@ -72,7 +72,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-weight: 400;
+  font-weight: 800;
   
 }
 

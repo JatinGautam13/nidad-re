@@ -1,7 +1,7 @@
 .heroSection {
   width: 100%;
   min-height: 600px;
-  background: #041626;
+  /* background: #041626; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,7 +23,7 @@
   color: #8db6f7;
   font-family: 'Montserrat', Arial, sans-serif;
   font-size: 3rem;
-  font-weight: 500;
+  font-weight: 900;
   text-align: center;
   margin-bottom: 0.5rem;
   line-height: 1.05;
@@ -33,7 +33,7 @@
   color: #fff;
   font-family: 'Montserrat', Arial, sans-serif;
   font-size: 2.2rem;
-  font-weight: 400;
+  font-weight: 800;
   text-align: center;
   margin-bottom: 2rem;
   line-height: 1.07;
@@ -45,7 +45,7 @@
   text-align: center;
   margin: 0 0 2.5rem 0;
   line-height: 1.35;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 /* Content Grid Layout */
@@ -88,9 +88,9 @@
 }
 
 .projectTitle {
-  color: #5c6f81;
-  font-size: 1rem;
-  font-weight: 700;
+  color: #addeff;
+  font-size: 1.5rem;
+  font-weight: 900;
   margin-bottom: 1rem;
   letter-spacing: 0.07em;
 }

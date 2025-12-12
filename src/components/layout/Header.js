@@ -17,14 +17,14 @@ export default function Header() {
       <nav className={styles.navbar}>
         {/* Logo */}
         <div className={styles.logo}>
-          <Image
+          <a href="/" >  <Image
             src="/uploads/Nidads-2.png"
             alt="Nidads Logo"
             width={120}
             height={40}
             className={styles.logoImage}
             priority
-          />
+          /> </a>
         </div>
 
         {/* Desktop Navigation */}

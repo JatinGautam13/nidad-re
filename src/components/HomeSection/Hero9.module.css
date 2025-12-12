@@ -75,12 +75,12 @@
 
 .testimonialsWrapper::before {
   top: 0;
-  background: linear-gradient(to bottom, #041626 0%, transparent 100%);
+  background: linear-gradient(to bottom, #131943 0%, transparent 100%);
 }
 
 .testimonialsWrapper::after {
   bottom: 0;
-  background: linear-gradient(to top, #041626 0%, transparent 100%);
+  background: linear-gradient(to top, #131943 0%, transparent 100%);
 }
 
 .testimonialsGrid {
