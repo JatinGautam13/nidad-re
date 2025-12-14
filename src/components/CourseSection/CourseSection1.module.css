@@ -3,25 +3,114 @@
   /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
   position: relative;
   overflow: hidden;
-  padding: 20px 20px;
+  padding: 80px 20px;
 }
 
-.introSection::before {
-  content: '';
+/* Animated Background */
+.animatedBackground {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
-  animation: float 20s linear infinite;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
-@keyframes float {
-  from { transform: translateY(0); }
-  to { transform: translateY(-100px); }
+.floatingDataPoint {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: floatUpDown 10s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-30px) translateX(10px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-60px) translateX(-10px);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(-30px) translateX(10px);
+    opacity: 0.6;
+  }
+}
+
+/* Grid Lines */
+.gridLines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+}
+
+.gridLine {
+  animation: pulseGrid 4s ease-in-out infinite;
+}
+
+@keyframes pulseGrid {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Floating Charts */
+.floatingChart {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: floatChart 6s ease-in-out infinite;
+}
+
+@keyframes floatChart {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.chartLine {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: drawChart 3s ease-out forwards;
+}
+
+@keyframes drawChart {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.chartBar {
+  transform-origin: bottom;
+  animation: growChart 1s ease-out forwards;
+  transform: scaleY(0);
+}
+
+@keyframes growChart {
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* Container */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -36,27 +125,79 @@
   align-items: center;
 }
 
+/* Text Content */
 .textContent {
   color: white;
+  animation: fadeInLeft 1s ease-out;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
-  padding: 8px 20px;
+  padding: 10px 24px;
   border-radius: 30px;
   font-size: 14px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  animation: slideInDown 1s ease-out;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.badgePulse {
+  color: #4ade80;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 .title {
-  font-size: 52px;
+  font-size: 56px;
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 24px;
+  animation: fadeIn 1.2s ease-out 0.2s both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .highlight {
@@ -64,6 +205,28 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  position: relative;
+  display: inline-block;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(120deg, #fff 0%, #a8edea 100%);
+  animation: expandWidth 1.5s ease-out 0.5s both;
+}
+
+@keyframes expandWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 .description {
@@ -71,8 +234,10 @@
   line-height: 1.8;
   margin-bottom: 40px;
   opacity: 0.95;
+  animation: fadeIn 1.4s ease-out 0.4s both;
 }
 
+/* Enhanced Stats */
 .stats {
   display: flex;
   gap: 40px;
@@ -80,12 +245,43 @@
   padding: 30px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: default;
+}
+
+.statItem {
+  position: relative;
+  transition: transform 0.3s ease;
+  animation: fadeIn 1.6s ease-out 0.6s both;
+}
+
+.statItem:hover {
+  transform: translateY(-5px);
+}
+
+.statIcon {
+  font-size: 32px;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+  /* animation: bounce 2s ease-in-out infinite; */
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .statItem h3 {
-  font-size: 36px;
+  font-size: 42px;
   font-weight: 700;
   margin-bottom: 8px;
+  background: linear-gradient(120deg, #fff 0%, #a8edea 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .statItem p {
@@ -93,29 +289,61 @@
   opacity: 0.9;
 }
 
+/* CTA Buttons */
 .ctaButtons {
   display: flex;
   gap: 16px;
+  animation: fadeIn 1.8s ease-out 0.8s both;
 }
 
 .primaryBtn, .secondaryBtn {
-  padding: 16px 32px;
+  padding: 18px 36px;
   font-size: 16px;
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
 }
 
 .primaryBtn {
   background: white;
   color: #667eea;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.primaryBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transition: left 0.5s ease;
+}
+
+.primaryBtn:hover::before {
+  left: 100%;
 }
 
 .primaryBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.btnArrow {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.primaryBtn:hover .btnArrow {
+  transform: translateX(5px);
 }
 
 .secondaryBtn {
@@ -125,21 +353,52 @@
 }
 
 .secondaryBtn:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-3px);
 }
 
+.downloadIcon {
+  font-size: 18px;
+  animation: bounceDown 2s ease-in-out infinite;
+}
+
+@keyframes bounceDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+/* Image Content */
 .imageContent {
   position: relative;
+  animation: fadeInRight 1s ease-out 0.5s both;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .imageWrapper {
-  /* max-width: 90%; */
   position: relative;
   border-radius: 20px;
   overflow: hidden;
-  margin-bottom: 120px;
-  /* box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); */
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  transition: transform 0.5s ease;
 }
+
+/* .imageWrapper:hover {
+  transform: scale(1.02);
+} */
 
 .teacherImage {
   width: 100%;
@@ -148,19 +407,54 @@
   display: block;
 }
 
+/* Glowing Ring Effect */
+.glowRing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 110%;
+  height: 110%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: glowPulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
 .imageOverlay {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
   padding: 40px 30px;
   color: white;
+
+  /* Existing gradient overlay */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+
+  /* Constant blur */
+  /* backdrop-filter: blur(5px); */
+
+  /* Blur ka visual effect neeche strong, upar fade */
+  mask-image: linear-gradient(to top, black 0%, black 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, black 0%, black 40%, transparent 100%);
 }
 
+
 .instructorInfo h4 {
-  font-size: 24px;
+  font-size: 28px;
   margin-bottom: 8px;
+  font-weight: 700;
 }
 
 .instructorInfo p {
@@ -172,72 +466,134 @@
 .credentials {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .credentials span {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
-  padding: 6px 14px;
+  padding: 8px 16px;
   border-radius: 20px;
   font-size: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
 }
 
-.floatingCard {
+.credentials span:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* Floating Tech Icons on Right Side */
+.floatingIconsRight {
   position: absolute;
-  top: 40px;
-  right: -40px;
-  background: white;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  right: -120px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
-  gap: 16px;
-  max-width: 280px;
-  animation: floatCard 3s ease-in-out infinite;
+  flex-direction: column;
+  gap: 30px;
+  animation: fadeIn 2s ease-out 1s both;
 }
 
-@keyframes floatCard {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+.floatingTechIcon {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 12px 20px;
+  border-radius: 50px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  /* animation: floatSide 4s ease-in-out infinite; */
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.cardIcon {
+.floatingTechIcon:hover {
+  transform: translateX(-10px) scale(1.05);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+}
+
+.floatingTechIcon:nth-child(1) { animation-delay: 0s; }
+.floatingTechIcon:nth-child(2) { animation-delay: 0.5s; }
+.floatingTechIcon:nth-child(3) { animation-delay: 1s; }
+.floatingTechIcon:nth-child(4) { animation-delay: 1.5s; }
+.floatingTechIcon:nth-child(5) { animation-delay: 2s; }
+.floatingTechIcon:nth-child(6) { animation-delay: 2.5s; }
+
+@keyframes floatSide {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-15px) translateX(-5px);
+  }
+}
+
+.techIconSymbol {
   font-size: 32px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
-.cardContent h5 {
-  font-size: 16px;
-  color: #333;
-  margin-bottom: 6px;
+.techIconName {
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
-.cardContent p {
-  font-size: 13px;
-  color: #666;
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .floatingIconsRight {
+    right: -100px;
+  }
 }
 
 @media (max-width: 968px) {
   .contentWrapper {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 60px;
   }
   
   .title {
-    font-size: 40px;
+    font-size: 42px;
   }
   
   .stats {
     gap: 20px;
   }
-  
-  .floatingCard {
-    right: 20px;
+
+  .floatingIconsRight {
+    position: relative;
+    right: 0;
+    top: 0;
+    transform: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  .floatingTechIcon {
+    padding: 10px 16px;
+  }
+
+  .techIconSymbol {
+    font-size: 28px;
+  }
+
+  .techIconName {
+    font-size: 13px;
   }
 }
 
 @media (max-width: 768px) {
+  .introSection {
+    padding: 60px 20px;
+  }
+
   .title {
-    font-size: 32px;
+    font-size: 36px;
   }
   
   .ctaButtons {
@@ -246,5 +602,59 @@
   
   .primaryBtn, .secondaryBtn {
     width: 100%;
+    justify-content: center;
   }
+
+  .stats {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .statItem {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .floatingChart {
+    display: none;
+  }
+
+  .floatingIconsRight {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 28px;
+  }
+
+  .statItem h3 {
+    font-size: 32px;
+  }
+
+  .floatingTechIcon {
+    padding: 8px 12px;
+  }
+
+  .techIconSymbol {
+    font-size: 24px;
+  }
+
+  .techIconName {
+    font-size: 11px;
+  }
+}
+
+
+
+
+.credentialItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.credentialIcon {
+  flex-shrink: 0;
 }

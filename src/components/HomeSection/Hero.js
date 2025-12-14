@@ -214,7 +214,7 @@ export default function Hero() {
             <span className={styles.white}> Data Science</span>
           </h1>
           <h2 className={styles.subtitle}>
-            Master <span className={styles.highlightCyan}>AI</span>, <span className={styles.highlightBlue}>Machine Learning</span>, and <span className={styles.highlightPurple}>Analytics</span>
+           <span className={styles.highlightCyan}>AI</span>, <span className={styles.highlightBlue}>Machine Learning</span>, and <span className={styles.highlightPurple}>Data Analytics</span>
           </h2>
         </div>
 
