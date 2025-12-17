@@ -2,7 +2,6 @@
   display: block;
   padding: 2rem;
   min-height: 100vh;
-  /* background: linear-gradient(180deg, #001a33 0%, #002952 30%, #003d66 60%, #0055a5 100%); */
   position: relative;
   overflow: hidden;
   text-align: center;
@@ -53,7 +52,7 @@
 
 .mainTitle {
   font-size: 2rem;
-  margin: 0 0 1.5em;
+  margin: 0 0 1em;
   color: white;
   font-weight: 800;
   letter-spacing: 1px;
@@ -73,7 +72,23 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-weight: 800;
-  
+}
+
+.description {
+  max-width: 1290px;
+  margin: 0 auto 3rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
+  padding: 0 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .description {
+    font-size: 1.2rem;
+  }
 }
 
 /* Masonry Grid Layout */
@@ -156,7 +171,6 @@
   padding: 15px;
   color: #000000;
   font-weight: 500;
-  /* background: rgba(255, 255, 255, 0.95); */
   backdrop-filter: blur(10px);
   text-transform: lowercase;
   letter-spacing: 1px;
@@ -176,8 +190,36 @@
   background-clip: text;
 }
 
+/* See More Button */
+.seeMoreBtn {
+  margin: 2rem auto 0;
+  padding: 12px 40px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #0066cc 0%, #4da6ff 100%);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4);
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+.seeMoreBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 102, 204, 0.6);
+  background: linear-gradient(135deg, #4da6ff 0%, #80bfff 100%);
+}
+
+.seeMoreBtn:active {
+  transform: translateY(0);
+}
+
 /* Responsive Design */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   .grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-auto-rows: 120px;
@@ -191,6 +233,11 @@
 
   .itemDetails::before {
     font-size: 1rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
   }
 }
 
@@ -207,11 +254,22 @@
 
   .mainTitle {
     font-size: 1.8rem;
-    margin: 0 0 1.2em;
+    margin: 0 0 0.8em;
+  }
+
+  .description {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
   }
 
   .itemDetails {
     padding: 12px;
     font-size: 0.8rem;
+  }
+
+  .seeMoreBtn {
+    padding: 10px 35px;
+    font-size: 0.95rem;
   }
 }

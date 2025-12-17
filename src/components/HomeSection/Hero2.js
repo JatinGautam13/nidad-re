@@ -6,30 +6,30 @@ export default function Hero2() {
       <div className={styles.container}>
         {/* Headings */}
         <h1 className={styles.headingBlue}>
-          AI Career & Soft Skills
+          Master Data Science
         </h1>
         <h2 className={styles.headingWhite}>
-          Mentor for the UAE
+          Master AI, Machine Learning, and Analytics
         </h2>
         <p className={styles.subtitle}>
-          This intelligent mentor app provides personalized<br />
-          AI coaching and real-world simulations<br />
-          to foster confidence, connection, and career growth
+          Transform your career with cutting-edge data science skills.<br />
+          Learn from industry experts and work on real-world projects<br />
+          to become a sought-after data professional
         </p>
         <div className={styles.gridContent}>
           {/* Left Side: Just the image */}
           <div className={styles.leftImageWrap}>
             <img
               src="/uploads/Gemini_Generated_Image_y5f7azy5f7azy5f7 (1) (1).png"
-              alt="Mentor App"
+              alt="Data Science Learning"
               className={styles.mainImg}
             />
           </div>
-          {/* Right Side: Task */}
+          {/* Right Side: What You'll Get */}
           <div className={styles.rightTextWrap}>
-            <div className={styles.projectTitle}>Project Task</div>
+            <div className={styles.projectTitle}>What You'll Get</div>
             <div className={styles.projectDescription}>
-              The goal of the HabibiSkills project was to design and develop a mobile application that serves as an intelligent mentor for expatriates and newcomers in the UAE. The app aims to facilitate a smooth transition into the UAE's unique business and cultural landscape by providing personalized AI-driven guidance and practical skill-building resources.
+              Master essential data science skills including Python programming, statistical analysis, machine learning algorithms, deep learning, and data visualization. Gain hands-on experience with industry-standard tools like TensorFlow, PyTorch, Pandas, and Scikit-learn. Work on real-world projects, build a professional portfolio, and receive career guidance to land your dream job in AI and data analytics. Get lifetime access to course materials, mentorship from experienced data scientists, and a globally recognized certification upon completion.
             </div>
           </div>
         </div>

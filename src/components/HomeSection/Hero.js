@@ -7,6 +7,7 @@ import Link from 'next/link';
 export default function Hero() {
   const [chartData, setChartData] = useState([]);
   const [activeNode, setActiveNode] = useState(0);
+  const [floatingPoints, setFloatingPoints] = useState([]);
 
   useEffect(() => {
     // Generate random data points for animated chart
@@ -15,6 +16,17 @@ export default function Hero() {
       y: 150 + Math.sin(i * 0.5) * 50 + Math.random() * 30
     }));
     setChartData(points);
+
+    // Generate floating data points
+    const floating = Array.from({ length: 15 }, (_, i) => ({
+      cx: Math.random() * 1200,
+      cy: Math.random() * 800,
+      r: Math.random() * 3 + 1,
+      fill: i % 2 === 0 ? "#06b6d4" : "#8b5cf6",
+      duration: 3 + Math.random() * 2,
+      delay: Math.random() * 2
+    }));
+    setFloatingPoints(floating);
 
     // Cycle through active nodes
     const interval = setInterval(() => {
@@ -188,22 +200,36 @@ export default function Hero() {
         </g>
 
         {/* Floating Data Points */}
-        {[...Array(15)].map((_, i) => (
+        {floatingPoints.map((point, i) => (
           <circle
             key={`float-${i}`}
-            cx={Math.random() * 1200}
-            cy={Math.random() * 800}
-            r={Math.random() * 3 + 1}
-            fill={i % 2 === 0 ? "#06b6d4" : "#8b5cf6"}
+            cx={point.cx}
+            cy={point.cy}
+            r={point.r}
+            fill={point.fill}
             opacity="0.4"
             className={styles.floatingPoint}
             style={{ 
-              animationDuration: `${3 + Math.random() * 2}s`,
-              animationDelay: `${Math.random() * 2}s`
+              animationDuration: `${point.duration}s`,
+              animationDelay: `${point.delay}s`
             }}
           />
         ))}
       </svg>
+
+      {/* Decorative Images */}
+      <div className={styles.decorativeImages}>
+        <img 
+          src="/uploads/Data Analysis.png" 
+          alt="Data Analysis" 
+          className={styles.leftImage}
+        />
+        <img 
+          src="/uploads/data scinece.png" 
+          alt="Data Science" 
+          className={styles.rightImage}
+        />
+      </div>
 
       {/* Main Content */}
       <div className={styles.content}>
@@ -214,7 +240,7 @@ export default function Hero() {
             <span className={styles.white}> Data Science</span>
           </h1>
           <h2 className={styles.subtitle}>
-           <span className={styles.highlightCyan}>AI</span>, <span className={styles.highlightBlue}>Machine Learning</span>, and <span className={styles.highlightPurple}>Data Analytics</span>
+            Master <span className={styles.highlightCyan}>AI</span>, <span className={styles.highlightBlue}>Machine Learning</span>, and <span className={styles.highlightPurple}>Analytics</span>
           </h2>
         </div>
 

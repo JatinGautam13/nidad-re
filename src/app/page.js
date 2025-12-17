@@ -18,7 +18,7 @@ export default function Home() {
         <Hero3/>
         <Hero6 />
    <Hero4 />
-   {/* <Hero5 />    */}
+   <Hero5 />   
    <Hero7 />
    <Hero8 />
    <Hero9 />
