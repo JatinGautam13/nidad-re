@@ -26,19 +26,19 @@ export default function Hero4() {
     {
       id: 2,
       title: 'Data Analysis with Pandas & NumPy',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
+      image: '/uploads/infra1.jpeg',
       size: 'large'
     },
     {
       id: 3,
       title: 'Statistical Analysis & Probability',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
+      image: '/uploads/infra3.jpeg',
       size: 'medium'
     },
     {
       id: 4,
       title: 'Machine Learning Algorithms',
-      image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop',
+      image: '/uploads/infra2.jpeg',
       size: 'large'
     },
     {
