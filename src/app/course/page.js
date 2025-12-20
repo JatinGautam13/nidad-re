@@ -16,7 +16,7 @@ export default function CoursePage() {
       <CourseSection1 />
       <CourseSection2 />
       {/* <CourseSection3 /> */}
-      <Hero9 />
+      {/* <Hero9 /> */}
     </main>
   );
 }

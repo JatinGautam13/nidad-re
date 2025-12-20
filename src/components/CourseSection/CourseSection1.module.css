@@ -1,113 +1,8 @@
 .introSection {
   min-height: 100vh;
-  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
   position: relative;
   overflow: hidden;
-  padding: 5px 20px;
-}
-
-/* Animated Background */
-.animatedBackground {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.floatingDataPoint {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 50%;
-  animation: floatUpDown 10s ease-in-out infinite;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-}
-
-@keyframes floatUpDown {
-  0%, 100% {
-    transform: translateY(0) translateX(0);
-    opacity: 0.3;
-  }
-  25% {
-    transform: translateY(-30px) translateX(10px);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translateY(-60px) translateX(-10px);
-    opacity: 0.8;
-  }
-  75% {
-    transform: translateY(-30px) translateX(10px);
-    opacity: 0.6;
-  }
-}
-
-/* Grid Lines */
-.gridLines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.3;
-}
-
-.gridLine {
-  animation: pulseGrid 4s ease-in-out infinite;
-}
-
-@keyframes pulseGrid {
-  0%, 100% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 0.6;
-  }
-}
-
-/* Floating Charts */
-.floatingChart {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  animation: floatChart 6s ease-in-out infinite;
-}
-
-@keyframes floatChart {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-.chartLine {
-  stroke-dasharray: 300;
-  stroke-dashoffset: 300;
-  animation: drawChart 3s ease-out forwards;
-}
-
-@keyframes drawChart {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.chartBar {
-  transform-origin: bottom;
-  animation: growChart 1s ease-out forwards;
-  transform: scaleY(0);
-}
-
-@keyframes growChart {
-  to {
-    transform: scaleY(1);
-  }
+  padding: 40px 20px;
 }
 
 /* Container */
@@ -118,9 +13,10 @@
   z-index: 1;
 }
 
+/* Layout: 2 columns -> 1 column */
 .contentWrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   gap: 60px;
   align-items: center;
 }
@@ -131,15 +27,10 @@
   animation: fadeInLeft 1s ease-out;
 }
 
+/* Animations (unchanged) */
 @keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 .badge {
@@ -155,18 +46,6 @@
   margin-bottom: 24px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  animation: slideInDown 1s ease-out;
-}
-
-@keyframes slideInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .badgePulse {
@@ -175,29 +54,15 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
 .title {
-  font-size: 56px;
+  font-size: clamp(32px, 4vw, 56px);
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 24px;
-  animation: fadeIn 1.2s ease-out 0.2s both;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 .highlight {
@@ -217,67 +82,42 @@
   width: 100%;
   height: 3px;
   background: linear-gradient(120deg, #fff 0%, #a8edea 100%);
-  animation: expandWidth 1.5s ease-out 0.5s both;
-}
-
-@keyframes expandWidth {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
 }
 
 .description {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.8;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
   opacity: 0.95;
-  animation: fadeIn 1.4s ease-out 0.4s both;
 }
 
-/* Enhanced Stats */
+/* Stats */
 .stats {
   display: flex;
-  gap: 40px;
-  margin-bottom: 40px;
-  padding: 30px 0;
+  gap: 32px;
+  margin-bottom: 32px;
+  padding: 24px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  cursor: default;
+  flex-wrap: wrap;
 }
 
 .statItem {
-  position: relative;
-  transition: transform 0.3s ease;
-  animation: fadeIn 1.6s ease-out 0.6s both;
-}
-
-.statItem:hover {
-  transform: translateY(-5px);
+  flex: 1 1 150px;
+  min-width: 150px;
+  max-width: 200px;
 }
 
 .statIcon {
   font-size: 32px;
   margin-bottom: 8px;
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
-  /* animation: bounce 2s ease-in-out infinite; */
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
 }
 
 .statItem h3 {
-  font-size: 42px;
+  font-size: 32px;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   background: linear-gradient(120deg, #fff 0%, #a8edea 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -293,22 +133,24 @@
 .ctaButtons {
   display: flex;
   gap: 16px;
-  animation: fadeIn 1.8s ease-out 0.8s both;
+  flex-wrap: wrap;
 }
 
-.primaryBtn, .secondaryBtn {
-  padding: 18px 36px;
-  font-size: 16px;
+.primaryBtn,
+.secondaryBtn {
+  padding: 14px 28px;
+  font-size: 15px;
   font-weight: 600;
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 10px;
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .primaryBtn {
@@ -317,33 +159,9 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
-.primaryBtn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-  transition: left 0.5s ease;
-}
-
-.primaryBtn:hover::before {
-  left: 100%;
-}
-
 .primaryBtn:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
-}
-
-.btnArrow {
-  font-size: 20px;
-  transition: transform 0.3s ease;
-}
-
-.primaryBtn:hover .btnArrow {
-  transform: translateX(5px);
 }
 
 .secondaryBtn {
@@ -357,36 +175,15 @@
   transform: translateY(-3px);
 }
 
-.downloadIcon {
-  font-size: 18px;
-  animation: bounceDown 2s ease-in-out infinite;
-}
-
-@keyframes bounceDown {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(4px);
-  }
-}
-
 /* Image Content */
 .imageContent {
   position: relative;
   animation: fadeInRight 1s ease-out 0.5s both;
-  margin-bottom:180px;
 }
 
 @keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 .imageWrapper {
@@ -394,19 +191,14 @@
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-  transition: transform 0.5s ease;
 }
-
-/* .imageWrapper:hover {
-  transform: scale(1.02);
-} */
 
 .teacherImage {
   width: 100%;
-  height: 600px;
+  max-height: 520px;
+  height: auto;
   object-fit: contain;
   display: block;
-  
 }
 
 /* Glowing Ring Effect */
@@ -424,66 +216,58 @@
 }
 
 @keyframes glowPulse {
-  0%, 100% {
-    opacity: 0.5;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.1);
-  }
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
 }
+
+/* Overlay on image */
 .imageOverlay {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 20px 30px;
+  padding: 20px 24px;
   color: white;
-
-  /* Existing gradient overlay */
   background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
-
-  /* Constant blur */
-  /* backdrop-filter: blur(5px); */
-
-  /* Blur ka visual effect neeche strong, upar fade */
   mask-image: linear-gradient(to top, black 0%, black 40%, transparent 100%);
   -webkit-mask-image: linear-gradient(to top, black 0%, black 40%, transparent 100%);
 }
 
-
 .instructorInfo h4 {
-  font-size: 28px;
-  margin-bottom: 8px;
+  font-size: 22px;
+  margin-bottom: 6px;
   font-weight: 700;
 }
 
 .instructorInfo p {
-  font-size: 16px;
+  font-size: 14px;
   opacity: 0.9;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .credentials {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
 .credentials span {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
-  padding: 8px 16px;
+  padding: 6px 12px;
   border-radius: 20px;
-  font-size: 13px;
+  font-size: 12px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: all 0.3s ease;
 }
 
-.credentials span:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.05);
+.credentialItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.credentialIcon {
+  flex-shrink: 0;
 }
 
 /* Floating Tech Icons on Right Side */
@@ -494,75 +278,60 @@
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  animation: fadeIn 2s ease-out 1s both;
+  gap: 24px;
 }
 
 .floatingTechIcon {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  padding: 12px 20px;
+  padding: 10px 16px;
   border-radius: 50px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  /* animation: floatSide 4s ease-in-out infinite; */
-  transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .floatingTechIcon:hover {
-  transform: translateX(-10px) scale(1.05);
+  transform: translateX(-6px) scale(1.04);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
 }
 
-.floatingTechIcon:nth-child(1) { animation-delay: 0s; }
-.floatingTechIcon:nth-child(2) { animation-delay: 0.5s; }
-.floatingTechIcon:nth-child(3) { animation-delay: 1s; }
-.floatingTechIcon:nth-child(4) { animation-delay: 1.5s; }
-.floatingTechIcon:nth-child(5) { animation-delay: 2s; }
-.floatingTechIcon:nth-child(6) { animation-delay: 2.5s; }
-
-@keyframes floatSide {
-  0%, 100% {
-    transform: translateY(0) translateX(0);
-  }
-  50% {
-    transform: translateY(-15px) translateX(-5px);
-  }
-}
-
 .techIconSymbol {
-  font-size: 32px;
+  font-size: 28px;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .techIconName {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 700;
   white-space: nowrap;
 }
 
-/* Responsive Design */
-@media (max-width: 1200px) {
-  .floatingIconsRight {
-    right: -100px;
-  }
-}
+/* ========== RESPONSIVE ========= */
 
+/* Tablets / small laptops */
 @media (max-width: 968px) {
   .contentWrapper {
     grid-template-columns: 1fr;
-    gap: 60px;
+    gap: 40px;
   }
-  
+
+  .imageContent {
+    order: -1; /* image on top, text below or remove if you want text first */
+  }
+
   .title {
-    font-size: 42px;
+    font-size: 32px;
   }
-  
+
   .stats {
     gap: 20px;
+  }
+
+  .statItem {
+    flex: 1 1 140px;
   }
 
   .floatingIconsRight {
@@ -573,66 +342,79 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 24px;
+    gap: 16px;
   }
 
-  .floatingTechIcon {
-    padding: 10px 16px;
-  }
-
-  .techIconSymbol {
-    font-size: 28px;
-  }
-
-  .techIconName {
-    font-size: 13px;
+  .teacherImage {
+    max-height: 460px;
   }
 }
 
+/* Mobile */
 @media (max-width: 768px) {
   .introSection {
-    padding: 60px 20px;
+    padding: 40px 16px 60px;
   }
 
   .title {
-    font-size: 36px;
+    font-size: 28px;
   }
-  
-  .ctaButtons {
-    flex-direction: column;
-  }
-  
-  .primaryBtn, .secondaryBtn {
-    width: 100%;
-    justify-content: center;
+
+  .description {
+    font-size: 15px;
   }
 
   .stats {
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 16px;
   }
 
   .statItem {
-    flex: 1;
-    min-width: 120px;
+    flex: 1 1 140px;
+    max-width: none;
   }
 
-  .floatingChart {
-    display: none;
+  .ctaButtons {
+    flex-direction: column;
+  }
+
+  .primaryBtn,
+  .secondaryBtn {
+    width: 100%;
+    justify-content: center;
+    white-space: normal;
   }
 
   .floatingIconsRight {
     gap: 12px;
   }
+
+  .imageContent {
+    margin-top: 8px;
+  }
+
+  .teacherImage {
+    max-height: 420px;
+  }
 }
 
+/* Small mobile */
 @media (max-width: 480px) {
+  .introSection {
+    padding: 32px 12px 48px;
+  }
+
   .title {
-    font-size: 28px;
+    font-size: 24px;
   }
 
   .statItem h3 {
-    font-size: 32px;
+    font-size: 26px;
+  }
+
+  .statItem p {
+    font-size: 13px;
   }
 
   .floatingTechIcon {
@@ -640,23 +422,22 @@
   }
 
   .techIconSymbol {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .techIconName {
     font-size: 11px;
   }
-}
 
+  .imageOverlay {
+    padding: 16px 18px;
+  }
 
+  .instructorInfo h4 {
+    font-size: 18px;
+  }
 
-
-.credentialItem {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.credentialIcon {
-  flex-shrink: 0;
+  .instructorInfo p {
+    font-size: 13px;
+  }
 }

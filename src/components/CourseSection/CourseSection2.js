@@ -7,309 +7,363 @@ import { courses } from "@/data/courses";
 
 const CourseSection2 = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedLevel, setSelectedLevel] = useState("all");
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(false);
-  const scrollRef = useRef(null);
+  const [selectedLevel, setSelectedLevel] = useState([]);
+  const [selectedDuration, setSelectedDuration] = useState([]);
+  const [selectedPrice, setSelectedPrice] = useState("all");
+  const [sortBy, setSortBy] = useState("newest");
+  const [activeTab, setActiveTab] = useState("popular");
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+  const sidebarSearchRef = useRef(null);
 
   const filteredCourses = useMemo(() => {
+    let filtered = [...courses];
     const q = searchQuery.toLowerCase();
-    return courses.filter((course) => {
-      const matchesSearch =
+
+    // Search filter
+    if (searchQuery) {
+      filtered = filtered.filter((course) =>
         course.title.toLowerCase().includes(q) ||
         course.description.toLowerCase().includes(q) ||
-        course.topics.some((t) => t.toLowerCase().includes(q));
+        course.topics.some((t) => t.toLowerCase().includes(q))
+      );
+    }
 
-      const matchesLevel = selectedLevel === "all" || course.level === selectedLevel;
-      const matchesCategory =
-        selectedCategory === "all" || course.category === selectedCategory;
+    // Level filter
+    if (selectedLevel.length > 0) {
+      filtered = filtered.filter((course) =>
+        selectedLevel.includes(course.level)
+      );
+    }
 
-      return matchesSearch && matchesLevel && matchesCategory;
-    });
-  }, [searchQuery, selectedLevel, selectedCategory]);
+    // Duration filter
+    if (selectedDuration.length > 0) {
+      filtered = filtered.filter((course) =>
+        selectedDuration.includes(course.duration)
+      );
+    }
 
-  const handleReset = () => {
+    // Tab filter
+    if (activeTab !== "popular") {
+      filtered = filtered.filter((course) => course.level === activeTab);
+    }
+
+    // Sort
+    if (sortBy === "newest") {
+      filtered.sort((a, b) => b.id - a.id);
+    } else if (sortBy === "rating") {
+      filtered.sort((a, b) => b.rating - a.rating);
+    }
+
+    return filtered;
+  }, [searchQuery, selectedLevel, selectedDuration, selectedPrice, sortBy, activeTab]);
+
+  const handleLevelToggle = (level) => {
+    setSelectedLevel((prev) =>
+      prev.includes(level) ? prev.filter((l) => l !== level) : [...prev, level]
+    );
+  };
+
+  const handleDurationToggle = (dur) => {
+    setSelectedDuration((prev) =>
+      prev.includes(dur) ? prev.filter((d) => d !== dur) : [...prev, dur]
+    );
+  };
+
+  const clearFilters = () => {
     setSearchQuery("");
-    setSelectedLevel("all");
-    setSelectedCategory("all");
+    setSelectedLevel([]);
+    setSelectedDuration([]);
+    setSelectedPrice("all");
+    setSortBy("newest");
+    setActiveTab("popular");
+    if (sidebarSearchRef.current) {
+      sidebarSearchRef.current.value = "";
+    }
   };
 
-  const updateScrollButtons = () => {
-    const el = scrollRef.current;
-    if (!el) return;
-
-    const { scrollLeft, scrollWidth, clientWidth } = el;
-    const maxScrollLeft = scrollWidth - clientWidth;
-
-    setCanScrollLeft(scrollLeft > 4);
-    setCanScrollRight(scrollLeft < maxScrollLeft - 4);
-  };
-
-  const scrollByCard = (direction) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const firstCard = el.querySelector(`.${styles.courseCard}`);
-    const cardWidth = firstCard ? firstCard.offsetWidth + 18 : 280;
-    const delta = direction === "left" ? -cardWidth : cardWidth;
-    el.scrollBy({ left: delta, behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    updateScrollButtons();
-    el.addEventListener("scroll", updateScrollButtons);
-    window.addEventListener("resize", updateScrollButtons);
-    return () => {
-      el.removeEventListener("scroll", updateScrollButtons);
-      window.removeEventListener("resize", updateScrollButtons);
-    };
-  }, [filteredCourses.length]);
+  const hasActiveFilters =
+    searchQuery ||
+    selectedLevel.length > 0 ||
+    selectedDuration.length > 0 ||
+    selectedPrice !== "all" ||
+    activeTab !== "popular";
 
   return (
     <section className={styles.courseSection}>
-      <div className={styles.container}>
-        {/* Header */}
-        <div className={styles.header}>
-          <span className={styles.kicker}>Programs</span>
-          <h2 className={styles.sectionTitle}>Data Science &amp; AI Courses</h2>
-          <p className={styles.sectionSubtitle}>
-            Compact, industry-aligned programs designed to move your career forward.
-          </p>
-        </div>
-
-        {/* Search + Filters */}
-        <div className={styles.filterBar}>
-          <div className={styles.searchContainer}>
-            <svg
-              className={styles.searchIcon}
-              width="18"
-              height="18"
-              viewBox="0 0 20 20"
-              fill="none"
+      <div className={styles.pageContainer}>
+        {/* Sidebar - Desktop */}
+        <aside className={`${styles.sidebar} ${isMobileFilterOpen ? styles.sidebarOpen : ""}`}>
+          <div className={styles.sidebarHeader}>
+            <button 
+              className={styles.closeSidebar}
+              onClick={() => setIsMobileFilterOpen(false)}
+              aria-label="Close filters"
             >
-              <path
-                d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM18 18l-4.35-4.35"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
+              ✕
+            </button>
+          </div>
+
+          <div className={styles.sidebarSection}>
+            <h3 className={styles.sidebarTitle}>Search</h3>
+            <div className={styles.sidebarSearchWrapper}>
+              <input
+                ref={sidebarSearchRef}
+                type="text"
+                placeholder="Search courses"
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className={styles.sidebarSearchInput}
               />
-            </svg>
+            </div>
+          </div>
+
+          <div className={styles.sidebarSection}>
+            <h3 className={styles.sidebarTitle}>Category</h3>
+            <label className={styles.toggleLabel}>
+              <input
+                type="checkbox"
+                checked={selectedLevel.includes("diploma")}
+                onChange={() => handleLevelToggle("diploma")}
+                className={styles.toggleInput}
+                aria-label="Toggle Diploma"
+              />
+              <span className={styles.toggleSlider} />
+              <span className={styles.checkboxText}>Diploma</span>
+            </label>
+            <label className={styles.toggleLabel}>
+              <input
+                type="checkbox"
+                checked={selectedLevel.includes("advanced")}
+                onChange={() => handleLevelToggle("advanced")}
+                className={styles.toggleInput}
+                aria-label="Toggle Advanced"
+              />
+              <span className={styles.toggleSlider} />
+              <span className={styles.checkboxText}>Advanced</span>
+            </label>
+            <label className={styles.toggleLabel}>
+              <input
+                type="checkbox"
+                checked={selectedLevel.includes("certificate")}
+                onChange={() => handleLevelToggle("certificate")}
+                className={styles.toggleInput}
+                aria-label="Toggle Certification"
+              />
+              <span className={styles.toggleSlider} />
+              <span className={styles.checkboxText}>Certification</span>
+            </label>
+          </div>
+
+          <div className={styles.sidebarSection}>
+            <h3 className={styles.sidebarTitle}>Duration</h3>
+            <label className={styles.toggleLabel}>
+              <input
+                type="checkbox"
+                checked={selectedDuration.includes("3 months")}
+                onChange={() => handleDurationToggle("3 months")}
+                className={styles.toggleInput}
+                aria-label="Toggle 3 months"
+              />
+              <span className={styles.toggleSlider} />
+              <span className={styles.checkboxText}>3 months</span>
+            </label>
+            <label className={styles.toggleLabel}>
+              <input
+                type="checkbox"
+                checked={selectedDuration.includes("3-4 months")}
+                onChange={() => handleDurationToggle("3-4 months")}
+                className={styles.toggleInput}
+                aria-label="Toggle 3-4 months"
+              />
+              <span className={styles.toggleSlider} />
+              <span className={styles.checkboxText}>3-4 months</span>
+            </label>
+            <label className={styles.toggleLabel}>
+              <input
+                type="checkbox"
+                checked={selectedDuration.includes("6 months")}
+                onChange={() => handleDurationToggle("6 months")}
+                className={styles.toggleInput}
+                aria-label="Toggle 6 months"
+              />
+              <span className={styles.toggleSlider} />
+              <span className={styles.checkboxText}>6 months</span>
+            </label>
+            <label className={styles.toggleLabel}>
+              <input
+                type="checkbox"
+                checked={selectedDuration.includes("12 months")}
+                onChange={() => handleDurationToggle("12 months")}
+                className={styles.toggleInput}
+                aria-label="Toggle 12 months"
+              />
+              <span className={styles.toggleSlider} />
+              <span className={styles.checkboxText}>12 months</span>
+            </label>
+          </div>
+
+          <div className={styles.sidebarSection}>
+            <h3 className={styles.sidebarTitle}>Price</h3>
+            <div className={styles.selectWrapper}>
+              <select
+                value={selectedPrice}
+                onChange={(e) => setSelectedPrice(e.target.value)}
+                className={styles.priceSelect}
+              >
+                <option value="all">All prices</option>
+                <option value="low">Under ₹50,000</option>
+                <option value="mid">₹50,000 - ₹1,00,000</option>
+                <option value="high">Above ₹1,00,000</option>
+              </select>
+            </div>
+          </div>
+
+          <label className={styles.toggleLabel}>
             <input
-              type="text"
-              placeholder="Search by course, skills, or topics..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className={styles.searchInput}
+              type="checkbox"
+              checked={sortBy === "newest"}
+              onChange={() => setSortBy(sortBy === "newest" ? "rating" : "newest")}
+              className={styles.toggleInput}
+              aria-label="Toggle newest first"
             />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery("")}
-                className={styles.clearSearch}
-                aria-label="Clear search"
-              >
-                ×
-              </button>
-            )}
-          </div>
+            <span className={styles.toggleSlider} />
+            <span className={styles.checkboxText}>Newest first</span>
+          </label>
 
-          <div className={styles.filterGroup}>
-            <div className={styles.selectWrapper}>
-              <select
-                value={selectedLevel}
-                onChange={(e) => setSelectedLevel(e.target.value)}
-                className={styles.filterSelect}
-              >
-                <option value="all">All Levels</option>
-                <option value="certificate">Certificate</option>
-                <option value="diploma">Diploma</option>
-                <option value="advanced">Advanced</option>
-              </select>
-            </div>
-
-            <div className={styles.selectWrapper}>
-              <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className={styles.filterSelect}
-              >
-                <option value="all">All Categories</option>
-                <option value="data-science">Data Science</option>
-                <option value="data-analytics">Data Analytics</option>
-              </select>
-            </div>
-
-            {(searchQuery || selectedLevel !== "all" || selectedCategory !== "all") && (
-              <button onClick={handleReset} className={styles.resetButton}>
-                Reset
-              </button>
-            )}
-          </div>
-        </div>
-
-        {/* Results info */}
-        <div className={styles.resultsInfo}>
-          <span className={styles.resultCount}>
-            {filteredCourses.length} program
-            {filteredCourses.length !== 1 ? "s" : ""} found
-          </span>
-          {filteredCourses.length < courses.length && (
-            <span className={styles.filterActive}>• filters applied</span>
-          )}
-        </div>
-
-        {/* Horizontal scroller with SVG < >, only if more than 4 cards */}
-        <div className={styles.scrollerRow}>
-          {filteredCourses.length > 4 && (
-            <button
-              type="button"
-              className={`${styles.scrollBtn} ${styles.scrollBtnLeft} ${
-                !canScrollLeft ? styles.scrollBtnHidden : ""
-              }`}
-              onClick={() => scrollByCard("left")}
-              aria-label="Scroll courses left"
-              disabled={!canScrollLeft}
-            >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <polyline
-                  points="15 18 9 12 15 6"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+          {hasActiveFilters && (
+            <button onClick={clearFilters} className={styles.clearFiltersBtn}>
+              Clear filters
             </button>
           )}
+        </aside>
 
-          <div ref={scrollRef} className={styles.courseScroller}>
-            <div className={styles.courseGrid}>
-              {filteredCourses.map((course) => (
-                <div key={course.id} className={styles.courseCard}>
-                  {/* Course Image */}
-                  <div className={styles.courseImage}>
-                    <img src={course.image} alt={course.title} />
-                    <span className={`${styles.levelBadge} ${styles[course.level]}`}>
-                      {course.level}
-                    </span>
-                  </div>
-
-                  {/* Card Content */}
-                  <div className={styles.cardContent}>
-                    <div className={styles.cardTopRow}>
-                      <div className={styles.ratingBox}>
-                        <span className={styles.star}>★</span>
-                        <span className={styles.ratingText}>{course.rating}</span>
-                        <span className={styles.studentCount}>
-                          ({course.students.toLocaleString()})
-                        </span>
-                      </div>
-                    </div>
-
-                    <h3 className={styles.courseTitle}>{course.title}</h3>
-                    <p className={styles.courseDescription}>{course.description}</p>
-
-                    <div className={styles.metaRow}>
-                      <div className={styles.metaItem}>
-                        <span className={styles.metaDot} />
-                        <span>{course.duration}</span>
-                      </div>
-                      <div className={styles.metaItem}>
-                        <span className={styles.metaDot} />
-                        <span>{course.mode}</span>
-                      </div>
-                    </div>
-
-                    <div className={styles.topicsRow}>
-                      {course.topics.slice(0, 3).map((topic, idx) => (
-                        <span key={idx} className={styles.topicChip}>
-                          {topic}
-                        </span>
-                      ))}
-                      {course.topics.length > 3 && (
-                        <span className={styles.moreChip}>
-                          +{course.topics.length - 3} more
-                        </span>
-                      )}
-                    </div>
-
-                    <Link href={`/course/${course.id}`} className={styles.enrollButton}>
-                      Explore program
-                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                        <path
-                          d="M6 3l5 5-5 5"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {filteredCourses.length > 4 && (
-            <button
-              type="button"
-              className={`${styles.scrollBtn} ${styles.scrollBtnRight} ${
-                !canScrollRight ? styles.scrollBtnHidden : ""
-              }`}
-              onClick={() => scrollByCard("right")}
-              aria-label="Scroll courses right"
-              disabled={!canScrollRight}
-            >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <polyline
-                  points="9 18 15 12 9 6"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          )}
-        </div>
-
-        {/* Bottom CTA */}
-        <div className={styles.ctaBox}>
-          <div className={styles.ctaContent}>
-            <h3>Need help choosing the right program?</h3>
-            <p>
-              Talk to our expert counselors and get a personalized learning path
-              based on your goals and experience.
-            </p>
-          </div>
-          <button className={styles.ctaButton}>
-            Book your free counseling now
-          </button>
-        </div>
-
-        {filteredCourses.length === 0 && (
-          <div className={styles.noResults}>
-            <h3>No programs found</h3>
-            <p>Try adjusting your search or filters.</p>
-            <button onClick={handleReset} className={styles.resetButtonLarge}>
-              Clear all filters
-            </button>
-          </div>
+        {/* Overlay for mobile */}
+        {isMobileFilterOpen && (
+          <div 
+            className={styles.overlay} 
+            onClick={() => setIsMobileFilterOpen(false)}
+          />
         )}
+
+        {/* Main Content */}
+        <main className={styles.mainContent}>
+          {/* Header with Filter Button */}
+          <div className={styles.contentHeader}>
+            <div className={styles.headerTop}>
+              <div>
+                <h1 className={styles.mainTitle}>IT & Software Courses</h1>
+                <p className={styles.mainSubtitle}>
+                  Explore our curated IT and software programs — from short certifications to full diplomas.
+                </p>
+              </div>
+              <button 
+                className={styles.filterButton}
+                onClick={() => setIsMobileFilterOpen(true)}
+              >
+                Filters
+              </button>
+            </div>
+
+            <div className={styles.mainSearchContainer}>
+              <svg className={styles.mainSearchIcon} width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path
+                  d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM18 18l-4.35-4.35"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+              <input
+                type="text"
+                placeholder="Search for a course"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className={styles.mainSearchInput}
+              />
+            </div>
+          </div>
+
+          {/* Tabs */}
+          <div className={styles.tabsContainer}>
+            <button
+              className={`${styles.tab} ${activeTab === "popular" ? styles.tabActive : ""}`}
+              onClick={() => setActiveTab("popular")}
+            >
+              Popular
+            </button>
+            <button
+              className={`${styles.tab} ${activeTab === "diploma" ? styles.tabActive : ""}`}
+              onClick={() => setActiveTab("diploma")}
+            >
+              Diploma
+            </button>
+            <button
+              className={`${styles.tab} ${activeTab === "advanced" ? styles.tabActive : ""}`}
+              onClick={() => setActiveTab("advanced")}
+            >
+              Advanced
+            </button>
+            <button
+              className={`${styles.tab} ${activeTab === "certificate" ? styles.tabActive : ""}`}
+              onClick={() => setActiveTab("certificate")}
+            >
+              Certification
+            </button>
+          </div>
+
+          {/* Card Grid (Responsive 3/2/1 columns) */}
+          <div className={styles.courseGridStatic}>
+            {filteredCourses.map((course) => (
+              <Link 
+                key={course.id} 
+                href={`/course/${course.id}`} 
+                className={styles.courseCard}
+              >
+                <div className={styles.courseImage}>
+                  <img src={course.image} alt={course.title} />
+                  {course.level === "certificate" && (
+                    <span className={styles.bestsellerBadge}>BESTSELLER</span>
+                  )}
+                </div>
+
+                <div className={styles.cardContent}>
+                  <h3 className={styles.courseTitle}>{course.title}</h3>
+                  <p className={styles.instructorName}>NIDADS Academy</p>
+
+                  <div className={styles.courseMetaRow}>
+                    <div className={styles.ratingBox}>
+                      <span className={styles.ratingStar}>★</span>
+                      <span className={styles.ratingValue}>{course.rating}</span>
+                    </div>
+                    <span className={styles.studentCount}>
+                      ({course.students.toLocaleString()})
+                    </span>
+                    <span className={styles.courseDuration}>{course.duration}</span>
+                  </div>
+
+                  <div className={styles.priceRow}>
+                    <span className={styles.currentPrice}>{course.price}</span>
+                    <span className={styles.originalPrice}>{course.monthlyPrice ? `₹${(parseInt(course.price.replace(/[^\d]/g, '')) + 10000).toLocaleString()}` : ''}</span>
+                  </div>
+                  {course.monthlyPrice && (
+                    <div className={styles.monthlyPayment}>
+                      or <span className={styles.monthlyPrice}>{course.monthlyPrice}/month</span>
+                    </div>
+                  )}
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {filteredCourses.length === 0 && (
+            <div className={styles.noResults}>
+              <h3>No courses found</h3>
+              <p>Try adjusting your filters or search query.</p>
+              <button onClick={clearFilters} className={styles.clearFiltersBtn}>
+                Clear all filters
+              </button>
+            </div>
+          )}
+        </main>
       </div>
     </section>
   );
