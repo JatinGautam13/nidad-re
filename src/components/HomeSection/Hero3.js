@@ -1,5 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+
 import styles from './Hero3.module.css';
 
 export default function Hero3() {
@@ -47,7 +49,8 @@ export default function Hero3() {
   ];
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.matchMedia('(max-width:767px)').matches);
+    const checkMobile = () =>
+      setIsMobile(window.matchMedia('(max-width:767px)').matches);
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
@@ -89,7 +92,10 @@ export default function Hero3() {
   };
 
   const go = (step) => {
-    const newIndex = Math.min(Math.max(current + step, 0), slides.length - 1);
+    const newIndex = Math.min(
+      Math.max(current + step, 0),
+      slides.length - 1
+    );
     activate(newIndex);
   };
 
@@ -113,7 +119,7 @@ export default function Hero3() {
   return (
     <section className={styles.section}>
       <div className={styles.head}>
-        <h2>Boost your professional workflow and productivity</h2>
+        <h2>Top Courses That Shape Your Future</h2>
 
         <div className={styles.controls}>
           <button
@@ -154,13 +160,25 @@ export default function Hero3() {
               }}
               onClick={() => activate(index)}
             >
-              <img className={styles.projectCardBg} src={slide.bg} alt="" />
+              <img
+                className={styles.projectCardBg}
+                src={slide.bg}
+                alt=""
+              />
               <div className={styles.projectCardContent}>
-                <img className={styles.projectCardThumb} src={slide.thumb} alt={slide.title} />
+                <img
+                  className={styles.projectCardThumb}
+                  src={slide.thumb}
+                  alt={slide.title}
+                />
                 <div>
-                  <h3 className={styles.projectCardTitle}>{slide.title}</h3>
+                  <h3 className={styles.projectCardTitle}>
+                    {slide.title}
+                  </h3>
                   <p className={styles.projectCardDesc}>{slide.desc}</p>
-                  <button className={styles.projectCardBtn}>Details</button>
+                  <button className={styles.projectCardBtn}>
+                    Details
+                  </button>
                 </div>
               </div>
             </article>
@@ -173,12 +191,22 @@ export default function Hero3() {
           {slides.map((_, index) => (
             <span
               key={index}
-              className={`${styles.dot} ${index === current ? styles.active : ''}`}
+              className={`${styles.dot} ${
+                index === current ? styles.active : ''
+              }`}
               onClick={() => activate(index)}
             />
           ))}
         </div>
       )}
+
+      {/* CTA at end of section */}
+       <div className={styles.ctaWrapper}>
+  <Link href="/course" className={styles.ctaBtn}>
+    Explore all courses
+  </Link>
+</div>
+
     </section>
   );
 }

@@ -6,25 +6,25 @@ const Hero8 = () => {
   const [openIndex, setOpenIndex] = useState(0);
 
   const faqs = [
-    {
+     {
       id: 1,
-      question: 'What facilities are available at the workspace?',
-      answer: 'We provide facilities such as high-speed WiFi, air-conditioned workspaces, ergonomic chairs and desks, a pantry with complimentary beverages (coffee/tea), a printer, and meeting rooms that can be booked as needed.'
+      question: 'What kind of learning environment does NIDAD provide?',
+      answer: 'NIDAD offers a professional, industry-simulated learning environment focused on Data Analytics, Data Science, and Machine Learning. Students work with real datasets, live projects, industry tools, and guided workflows that mirror real corporate analytics teams.'
     },
     {
       id: 2,
-      question: 'Do I need to make a reservation in advance?',
-      answer: 'Yes, we recommend making a reservation in advance to ensure availability. You can book online through our website or mobile app, or contact our team directly for assistance.'
+      question: 'Are there flexible payment or EMI options available?',
+      answer: 'Yes. We offer easy, interest-free EMI plans so students can spread their investment over affordable monthly payments. Our pricing is transparent with no hidden charges.'
     },
     {
       id: 3,
-      question: 'Are there flexible rental packages available?',
-      answer: 'We offer a variety of packages, including daily, weekly, and monthly options. You can also choose specialized packages, such as coworking spaces, meeting rooms, or private offices, based on your needs.'
+      question: 'What learning modes are available at NIDAD?',
+      answer: 'We provide 100% online and Offline live instructor-led classes with recordings, along with flexible weekend batches. This allows students and working professionals to learn at their own pace without compromising quality.'
     },
     {
       id: 4,
-      question: 'What payment methods are accepted?',
-      answer: 'Payments can be made online via bank transfer, e-wallets, or credit cards. On-site payments are also available for certain services.'
+      question: 'What resources and tools are included in the program?',
+      answer: 'Your investment includes official study materials, recorded lectures, hands-on projects, and access to industry-standard software such as Python, SQL, BI tools, and machine learning frameworks used by professionals.'
     }
   ];
 

@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import SocialIcons from "@/components/SocialIcons";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,6 +49,7 @@ export default function RootLayout({ children }) {
         <Header/>
          {children}
         <Footer/>
+        <SocialIcons/>
       </body>
     </html>
   );

@@ -1,13 +1,13 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Hero4.module.css';
 
 export default function Hero4() {
   const [showAll, setShowAll] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Check if mobile on mount
-  useState(() => {
+  // Check if mobile on mount - FIXED: Changed from useState to useEffect
+  useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
@@ -20,12 +20,12 @@ export default function Hero4() {
     {
       id: 1,
       title: 'Python Programming Fundamentals',
-      image: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&h=600&fit=crop',
+      image: '/uploads/IMG_4064.jpeg',
       size: ''
     },
     {
       id: 2,
-      title: 'Data Analysis with Pandas & NumPy',
+      // title: 'Data Analysis with Pandas & NumPy',
       image: '/uploads/infra1.jpeg',
       size: 'large'
     },
@@ -44,13 +44,13 @@ export default function Hero4() {
     {
       id: 5,
       title: 'Data Visualization with Matplotlib & Seaborn',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
+      image: '/uploads/IMG_4080.jpeg',
       size: 'medium'
     },
     {
       id: 6,
       title: 'Computer Vision & Image Recognition',
-      image: 'https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=800&h=600&fit=crop',
+      image: '/uploads/IMG_4070.jpeg',
       size: ''
     },
     
@@ -61,16 +61,11 @@ export default function Hero4() {
   return (
     <section className={styles.section}>
       <h1 className={styles.mainTitle}>
-        Our <span className={styles.personaText}>Learning Path</span>
+        Corporate-Style <span className={styles.personaText}>Learning Experience</span>
       </h1>
       
       <p className={styles.description}>
-        Master data science through our comprehensive curriculum designed by industry experts. 
-        Our structured learning path covers everything from foundational programming to advanced 
-        machine learning and AI deployment. Each module includes hands-on projects, real-world 
-        case studies, and personalized mentorship to ensure you build practical skills that 
-        employers demand. Join thousands of successful graduates who have transformed their 
-        careers with our proven methodology.
+        Our training replicates a real professional analytics environment, not a traditional classroom. You’ll work in advanced labs using industry-standard tools like Python, R, SQL, and leading BI platforms on high-end systems. Each module is designed as a live business project, following agile workflows with clear goals, timelines, and continuous mentor feedback. Through real-world case studies such as sales forecasting, customer churn, and financial analysis, you gain hands-on, job-ready experience. Dedicated one-on-one mentors guide you throughout, providing support similar to an experienced industry team lead.
       </p>
 
       <div className={styles.grid}>

@@ -1,6 +1,6 @@
 import styles from './aboutSection2.module.css';
 
-const mainImg = "https://4kwallpapers.com/images/wallpapers/zenitsu-agatsuma-2048x2048-22696.png";
+const mainImg = "/uploads/Shagun4-removebg-preview (1).png";
 
 export default function AboutSection2() {
   return (
@@ -10,17 +10,20 @@ export default function AboutSection2() {
         <div className={styles.left}>
           <div className={styles.leftDesc}>
             <div className={styles.detail}>
-              Modern Perspective & Visual Storytelling
+              Built for the Data-Driven Generation
             </div>
             <div className={styles.subdesc}>
-              Our creative approach features immersive visuals, fresh angles, and high-quality digital narrativesOur creative approach features immersive visuals, fresh angles, and high-quality digital narratives.Our creative approach features immersive visuals, fresh angles, and high-quality digital narratives.Our creative approach features immersive visuals, fresh angles, and high-quality digital narratives.Our creative approach features immersive visuals, fresh angles, and high-quality digital narratives.Our creative approach features immersive visuals, fresh angles, and high-quality digital narratives..
+              NIDAD was founded with a clear vision: to bridge the gap between academic learning and
+              real-world data careers. Our programs are designed around industry needs, combining
+              analytics thinking, modern tools, and hands-on project experience to create professionals
+              who are confident, capable, and job-ready from day one.
             </div>
           </div>
         </div>
 
         {/* CENTER: Main Image */}
         <div className={styles.middle}>
-          <img src={mainImg} alt="Main Visual" className={styles.mainImg} />
+          <img src={mainImg} alt="NIDAD Learning Journey" className={styles.mainImg} />
         </div>
 
         {/* RIGHT SIDE: Section Heading */}

@@ -33,14 +33,13 @@ const Hero7 = () => {
       <div className={styles.container}>
         {/* Header Section */}
         <div className={styles.header}>
-          <div className={styles.badge}>
+          {/* <div className={styles.badge}>
             <span className={styles.badgeIcon}>🎯</span>
             <span className={styles.badgeText}>Why Choose Us</span>
-          </div>
+          </div> */}
           <h1 className={styles.title}>Why Choose Us</h1>
           <p className={styles.description}>
-            Our mission is to drive progress and enhance the lives of our customers by delivering superior
-            products and services that exceed.
+            We offer premium training with flexibility in payment and learning modes.<br/> <b>Easy EMI Plans,</b><b> Value-Driven Pricing,</b><b> 24/7 Support,</b> and <b>Industry-Aligned Curriculum</b> to ensure your success.
           </p>
         </div>
 

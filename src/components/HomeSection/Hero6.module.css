@@ -1,20 +1,22 @@
 /* --- Global Reset/Setup --- */
 .heroContainer {
-    display: flex; /* Use flex to easily center the single image block */
+    display: flex;
+    /* Use flex to easily center the single image block */
     justify-content: center;
     align-items: center;
-    
+
     /* Make the container full screen height/width for a dramatic, image-only view */
     /* Replaced 100vw and 100vh with 100% */
     width: 100%;
-    height: 100%; 
-    padding: 0; /* Remove padding */
+    height: 100%;
+    padding: 0;
+    /* Remove padding */
     padding-bottom: 50px;
     /* Dark blue/black background inspired by the visual */
     /* background: linear-gradient(135deg, #02071a 0%, #031538 100%); */
-    
+
     /* Remove default rounding/shadow since it's full screen now */
-    border-radius: 0; 
+    border-radius: 0;
     box-shadow: none;
     font-family: 'Inter', sans-serif;
 }
@@ -24,14 +26,16 @@
 
 /* --- Image Area Styling (The right column, now the only element) */
 .imageArea {
-    transform-origin: center center; /* Change origin to center for centered rotation */
+    transform-origin: center center;
+    /* Change origin to center for centered rotation */
     border-radius: 12px;
     /* Maintain shadow for a nice floating effect */
     overflow: hidden;
     /* Constrain the size of the laptop/image block relative to the viewport */
     max-width: 90%;
     height: 70vw;
-    width: 100%; /* Example fixed size limit */
+    width: 100%;
+    /* Example fixed size limit */
 }
 
 .heroImage {
@@ -40,7 +44,8 @@
     height: auto;
     border-radius: 12px;
     object-fit: cover;
-    opacity: 0.85; /* Slight transparency for a futuristic feel */
+    opacity: 0.85;
+    /* Slight transparency for a futuristic feel */
     transition: transform 0.5s ease;
 }
 
@@ -58,8 +63,11 @@
 
     /* Remove the 3D effect on small screens to ensure readability and space */
     .imageArea {
-        transform: none; 
-        box-shadow: none; 
-        max-width: 95%; /* Allow it to take more space on mobile */
+        transform: none;
+        box-shadow: none;
+        max-width: 95%;
+        /* Allow it to take more space on mobile */  
+
     }
+
 }

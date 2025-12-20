@@ -6,10 +6,10 @@ export default function Hero2() {
       <div className={styles.container}>
         {/* Headings */}
         <h1 className={styles.headingBlue}>
-          Master Data Science
+          Career-Focused Programs 
         </h1>
         <h2 className={styles.headingWhite}>
-          Master AI, Machine Learning, and Analytics
+          & Pathways
         </h2>
         <p className={styles.subtitle}>
           Transform your career with cutting-edge data science skills.<br />
@@ -28,9 +28,23 @@ export default function Hero2() {
           {/* Right Side: What You'll Get */}
           <div className={styles.rightTextWrap}>
             <div className={styles.projectTitle}>What You'll Get</div>
-            <div className={styles.projectDescription}>
-              Master essential data science skills including Python programming, statistical analysis, machine learning algorithms, deep learning, and data visualization. Gain hands-on experience with industry-standard tools like TensorFlow, PyTorch, Pandas, and Scikit-learn. Work on real-world projects, build a professional portfolio, and receive career guidance to land your dream job in AI and data analytics. Get lifetime access to course materials, mentorship from experienced data scientists, and a globally recognized certification upon completion.
-            </div>
+            <ul className={styles.projectList}>
+              <li className={styles.projectItem}>
+                <strong>Job-Ready Skills:</strong> Master SQL, Python, Machine Learning, AI and BI tools that top companies demand.
+              </li>
+              <li className={styles.projectItem}>
+                <strong>Industry Confidence:</strong> Apply a business-focused mindset to solve real problems – just like a working analyst.
+              </li>
+              <li className={styles.projectItem}>
+                <strong>Live Portfolio Projects:</strong> Create multiple dashboards and analytics projects using real-world datasets.
+              </li>
+              <li className={styles.projectItem}>
+                <strong>Career Clarity:</strong> Receive personalized guidance to map out your analytics career journey.
+              </li>
+              <li className={styles.projectItem}>
+                <strong>Interview Preparedness:</strong> Practice mock interviews and resume reviews so you can ace the hiring process.
+              </li>
+            </ul>
           </div>
         </div>
       </div>

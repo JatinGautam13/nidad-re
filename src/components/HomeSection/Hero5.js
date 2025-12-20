@@ -12,30 +12,30 @@ const stats = [
 const testimonials = [
   {
     name: "Aman Verma",
-    role: "Data Analyst • Bangalore",
+    role: "Data Engineer • Bangalore",
     company: "TechNova Analytics",
     avatar:
       "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=600&q=80",
     quote:
-      "I cracked my first data analyst role in 5 months. The capstone projects and mock interviews made the real interviews feel easy.",
+      "As a working professional, I needed flexible learning that actually translated to my job. NIDADS’s project-based approach and mock interviews gave me the confidence to switch careers. Now I’m excelling as a Data Engineer.",
   },
   {
-    name: "Shruti Nair",
-    role: "ML Engineer • Pune",
+    name: "Priya Nair",
+    role: "Data Analyst • Pune",
     company: "DeepVision Labs",
     avatar:
       "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
     quote:
-      "From basic Python to deploying ML models, the mentorship and doubt support helped me switch from testing to machine learning.",
+      "Before NIDADS, I wasn’t sure how to transition from college to a data career. The hands-on projects and mentorship helped me build a strong portfolio. Today I’m a Data Analyst at a leading finance firm.",
   },
   {
     name: "Rohan Gupta",
     role: "Data Scientist • Gurgaon",
     company: "InsightSphere",
     avatar:
-      "https://images.unsplash.com/photo-1544723795-3fb0b90ccb55?auto=format&fit=crop&w=600&q=80",
+      "https://images.pexels.com/photos/2232981/pexels-photo-2232981.jpeg",
     quote:
-      "Real industry datasets, clear feedback on every assignment, and placement guidance – this program actually walks with you till you get the offer.",
+      "I joined NIDADS with zero analytics experience. Their guidance and real-world case studies empowered me. Within months I was solving problems for a retail company and felt completely prepared for interviews.",
   },
 ];
 

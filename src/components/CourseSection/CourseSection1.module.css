@@ -3,7 +3,7 @@
   /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
   position: relative;
   overflow: hidden;
-  padding: 80px 20px;
+  padding: 5px 20px;
 }
 
 /* Animated Background */
@@ -375,6 +375,7 @@
 .imageContent {
   position: relative;
   animation: fadeInRight 1s ease-out 0.5s both;
+  margin-bottom:180px;
 }
 
 @keyframes fadeInRight {
@@ -405,12 +406,13 @@
   height: 600px;
   object-fit: contain;
   display: block;
+  
 }
 
 /* Glowing Ring Effect */
 .glowRing {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 110%;
@@ -436,7 +438,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 40px 30px;
+  padding: 20px 30px;
   color: white;
 
   /* Existing gradient overlay */

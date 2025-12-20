@@ -229,29 +229,74 @@ const CourseSection1 = () => {
             </p>
 
             {/* Enhanced Stats with Icons */}
-            <div className={styles.stats}>
-              <div className={styles.statItem}>
-                <div className={styles.statIcon}>
-                  <img src="/uploads/icons8-students-48.png" alt="Students icon" />
-                </div>
-                <h3>500+</h3>
-                <p>Students Trained</p>
-              </div>
-              <div className={styles.statItem}>
-                <div className={styles.statIcon}>
-                  <img src="/uploads/icons8-graph-48.png" alt="Graph icon" />
-                </div>
-                <h3>95%</h3>
-                <p>Placement Rate</p>
-              </div>
-              <div className={styles.statItem}>
-                <div className={styles.statIcon}>
-                   <img src="/uploads/icons8-handshake-40.png" alt="industry" />
-                </div>
-                <h3>50+</h3>
-                <p>Industry Partners</p>
-              </div>
-            </div>
+          <div className={styles.stats}>
+  {/* Students Trained */}
+  <div className={styles.statItem}>
+    <div className={styles.statIcon}>
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M4 18v-1c0-2.2 3.6-4 8-4s8 1.8 8 4v1"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+        <circle cx="12" cy="7" r="4" stroke="currentColor" strokeWidth="1.8" />
+      </svg>
+    </div>
+    <h3>10000+</h3>
+    <p>Students Trained</p>
+  </div>
+
+  {/* Placement Rate */}
+  <div className={styles.statItem}>
+    <div className={styles.statIcon}>
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M4 16l4-4 4 3 6-7"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M20 20H4"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+      </svg>
+    </div>
+    <h3>95%</h3>
+    <p>Placement Rate</p>
+  </div>
+
+  {/* Industry Partners */}
+  <div className={styles.statItem}>
+    <div className={styles.statIcon}>
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M8 12l2 2 6-6"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <rect
+          x="3"
+          y="6"
+          width="18"
+          height="12"
+          rx="2"
+          stroke="currentColor"
+          strokeWidth="1.8"
+        />
+      </svg>
+    </div>
+    <h3>50+</h3>
+    <p>Industry Partners</p>
+  </div>
+</div>
+
 
             <div className={styles.ctaButtons}>
               <button className={styles.primaryBtn}>

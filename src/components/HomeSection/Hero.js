@@ -41,13 +41,37 @@ export default function Hero() {
   ).join(' ');
 
   const tools = [
-    { name: 'Python', icon: '🐍', color: 'python' },
-    { name: 'TensorFlow', icon: '🧠', color: 'tensorflow' },
-    { name: 'Pandas', icon: '🐼', color: 'pandas' },
-    { name: 'Scikit-learn', icon: '📊', color: 'scikit' },
-    { name: 'PyTorch', icon: '🔥', color: 'pytorch' },
-    { name: 'SQL', icon: '💾', color: 'sql' }
-  ];
+  {
+    name: 'Python',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+    color: 'python'
+  },
+  {
+    name: 'TensorFlow',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg',
+    color: 'tensorflow'
+  },
+  {
+    name: 'Pandas',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg',
+    color: 'pandas'
+  },
+  {
+    name: 'Scikit-learn',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg',
+    color: 'scikit'
+  },
+  {
+    name: 'PyTorch',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg',
+    color: 'pytorch'
+  },
+  {
+    name: 'SQL',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
+    color: 'sql'
+  }
+];
 
   const stats = [
     { number: '1000+', label: 'Students' },
@@ -153,7 +177,7 @@ export default function Hero() {
         )}
 
         {/* Animated Line Chart - Bottom Left */}
-        {chartData.length > 0 && (
+        {/* {chartData.length > 0 && (
           <g transform="translate(50, 550)">
             <path
               d={pathData}
@@ -175,10 +199,10 @@ export default function Hero() {
               />
             ))}
           </g>
-        )}
+        )} */}
 
         {/* Bar Chart - Bottom Right */}
-        <g transform="translate(750, 550)">
+        {/* <g transform="translate(750, 550)">
           {[40, 65, 45, 80, 60, 75, 90].map((height, i) => (
             <rect
               key={i}
@@ -197,7 +221,7 @@ export default function Hero() {
               }}
             />
           ))}
-        </g>
+        </g> */}
 
         {/* Floating Data Points */}
         {floatingPoints.map((point, i) => (
@@ -240,23 +264,37 @@ export default function Hero() {
             <span className={styles.white}> Data Science</span>
           </h1>
           <h2 className={styles.subtitle}>
-            Master <span className={styles.highlightCyan}>AI</span>, <span className={styles.highlightBlue}>Machine Learning</span>, and <span className={styles.highlightPurple}>Analytics</span>
+            <span className={styles.highlightCyan}>AI</span>, <span className={styles.highlightBlue}>Machine Learning</span>, and <span className={styles.highlightPurple}>Data Analytics</span>
           </h2>
         </div>
 
         {/* Description */}
         <p className={styles.description}>
-          Transform your career with hands-on data science training. Learn from industry experts 
-          through real-world projects and build skills in Python, Machine Learning, and Analytics.
+          Launch your career with practical Data Analytics & AI training aligned to industry needs. Gain job-ready skills in SQL, Python, Power BI, Excel and Machine Learning through real-world projects.
+          
+
         </p>
 
         {/* CTA Buttons */}
         <div className={styles.ctaButtons}>
           <Link href="/course" className={styles.buttonPrimary}>
-            Explore Courses
-          </Link>
+  <span className={styles.buttonTitle}>Explore Our Courses</span>
+
+  <span className={styles.modes}>
+    <span className={styles.mode}>
+      <span className={`${styles.dot} ${styles.greenDot}`} />
+      Online
+    </span>
+
+    <span className={styles.mode}>
+      <span className={`${styles.dot} ${styles.redDot}`} />
+      Offline
+    </span>
+  </span>
+</Link>
+
           <button className={styles.buttonSecondary}>
-            Watch Demo
+            Talk to a Career Expert
           </button>
         </div>
 
@@ -266,7 +304,10 @@ export default function Hero() {
           <div className={styles.toolsGrid}>
             {tools.map((tool, i) => (
               <div key={i} className={`${styles.toolCard} ${styles[tool.color]}`}>
-                <span className={styles.toolIcon}>{tool.icon}</span>
+                <span className={styles.toolIcon}>
+                  <img src={tool.icon} alt={tool.name} className={styles.toolImg} />
+                </span>
+
                 <span className={styles.toolName}>{tool.name}</span>
               </div>
             ))}
