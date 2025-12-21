@@ -1,0 +1,22 @@
+
+// import "@/styles/blog.css";
+
+import CourseSection1 from "@/components/CourseSection/CourseSection1";
+import CourseSection2 from "@/components/CourseSection/CourseSection2";
+import CourseSection3 from "@/components/CourseSection/CourseSection3";
+import Hero9 from "@/components/HomeSection/Hero9";
+
+export const metadata = {
+  title: "Course",
+};
+
+export default function CoursePage() {
+  return (
+    <main >
+      <CourseSection1 />
+      <CourseSection2 />
+      {/* <CourseSection3 /> */}
+      {/* <Hero9 /> */}
+    </main>
+  );
+}

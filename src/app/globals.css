@@ -1,0 +1,92 @@
+
+
+/* @import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+      /* background: #131943; */
+      background: linear-gradient(to bottom right, #0a0e27, #0f1642, #1a1f4d);
+
+  /* background-color: pink; */
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  overflow-x: hidden;
+  text-transform: capitalize;
+}
+
+/* Global responsive utilities */
+:root{
+  --container-max: 1200px;
+}
+
+html{
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-size: 16px;
+}
+
+.container{
+  width: min(var(--container-max), 100%);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Make media elements fluid */
+img, picture, svg, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Responsive iframes / embeds */
+.responsive-embed{
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+}
+.responsive-embed iframe, .responsive-embed video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Utility helpers */
+.row{display:flex;flex-wrap:wrap;gap:1rem}
+.col{flex:1 1 0;min-width:0}
+.hide-mobile{display:block}
+@media (max-width:768px){
+  .hide-mobile{display:none}
+}
+
+/* Ensure long words wrap */
+*{word-wrap:break-word}
+
+
