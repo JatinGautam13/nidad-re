@@ -263,7 +263,7 @@ const CourseSection2 = () => {
           <div className={styles.contentHeader}>
             <div className={styles.headerTop}>
               <div>
-                <h1 className={styles.mainTitle}>IT & Software Courses</h1>
+                <h1 className={styles.mainTitle}>AI & Data Science Courses</h1>
                 <p className={styles.mainSubtitle}>
                   Explore our curated IT and software programs — from short certifications to full diplomas.
                 </p>
