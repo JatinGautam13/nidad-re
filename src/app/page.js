@@ -9,6 +9,7 @@ import Hero7 from "@/components/HomeSection/Hero7";
 import Hero8 from "@/components/HomeSection/Hero8";
 import Hero9 from "@/components/HomeSection/Hero9";
 import VideoLoader from "@/components/VideoLoader";
+import ImgSlider from "@/components/HomeSection/ImgSlider";
 
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
       <Hero3/>
       {/* <Hero6 /> */}
       <Hero8 />
+      <ImgSlider />
       <Hero9 />
     </main>
   );
