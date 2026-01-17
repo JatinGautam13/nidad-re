@@ -22,6 +22,7 @@ export default function AboutSection1() {
               and Machine Learning with real-world projects and mentorship.
             </div>
           </div>
+          {/* <hello></hello> */}
         </div>
         <div className={styles.middle}>
           <img src={mainImg} alt="NIDAD Learning Environment" className={styles.mainImg} />
