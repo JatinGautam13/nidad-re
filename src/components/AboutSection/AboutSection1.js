@@ -23,6 +23,8 @@ export default function AboutSection1() {
             </div>
           </div>
           {/* <hello></hello> */}
+          {/* <hello></hello> */}
+
         </div>
         <div className={styles.middle}>
           <img src={mainImg} alt="NIDAD Learning Environment" className={styles.mainImg} />
