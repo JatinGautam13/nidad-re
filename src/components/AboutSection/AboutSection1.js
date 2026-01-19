@@ -25,6 +25,7 @@ export default function AboutSection1() {
           {/* <hello></hello> */}
           {/* <hello></hello> */}
           {/* <hello></hello> */}
+          {/* <hello></hello> */}
 
         </div>
         <div className={styles.middle}>
